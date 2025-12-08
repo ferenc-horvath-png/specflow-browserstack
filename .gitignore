@@ -10,3 +10,5 @@ obj
 .DS_Store
 *.log
 .vs
+*.feature.cs
+/Reqnroll_BrowserStack/browserstack.err
