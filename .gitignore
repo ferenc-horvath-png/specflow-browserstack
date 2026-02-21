@@ -6,9 +6,9 @@ obj
 *.html
 *.txt
 *.xml
-*.features.cs
 .DS_Store
 *.log
 .vs
 *.feature.cs
-/Reqnroll_BrowserStack/browserstack.err
+*.feature.g.cs
+*.g.cs

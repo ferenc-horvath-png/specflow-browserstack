@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\StepDefs\StepDefs.csproj" />
+		<ProjectReference Include="..\Generator\Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Reqnroll.NUnit" Version="2.4.1" />
+	</ItemGroup>
+
+	<!-- making the compiler ignore the emitted generated files to avoid duplications of classes and other symbols -->
+	<ItemGroup>
+		<Compile Remove="$(CompilerGeneratedFilesOutputPath)\**\*.*" />
+	</ItemGroup>
+	
+	<!-- clean the generated files before each build -->
+	<Target Name="CleanGeneratedFiles" BeforeTargets="Clean;BeforeBuild">
+		<Message Text="Cleaning generated files" Importance="high" />
+		<ItemGroup>
+			<GeneratedFiles Include="$(CompilerGeneratedFilesOutputPath)\**\*.*" />
+		</ItemGroup>
+		<Delete Files="@(GeneratedFiles)" />
+	</Target>
+
+</Project>
